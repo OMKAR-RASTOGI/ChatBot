@@ -7,8 +7,7 @@ from django.conf import settings
 
 API_URL = "https://router.huggingface.co/v1/chat/completions"
 API_KEY = settings.API_KEY
-print("sndfvk:::",API_KEY)
-MODEL_NAME = "moonshotai/Kimi-K2-Thinking:novita"
+MODEL_NAME="meta-llama/Llama-3.1-8B-Instruct:novita"
 
 def query_huggingface(messages):
     headers = {"Authorization": f"Bearer {API_KEY}"}
