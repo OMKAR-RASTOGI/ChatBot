@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-jqdxn5d^n+aivlvd7c14_ntpu)b&&^1#r%n$_qoe9hnf9pzu1p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['herile.onrender.com', 'localhost']
+ALLOWED_HOSTS = ['chat.onrender.com', 'localhost']
 
 
 
