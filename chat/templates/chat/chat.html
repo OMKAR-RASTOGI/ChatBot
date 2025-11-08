@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Chatbot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f4f6f9;
+        }
+        .chat-container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+        .chat-box {
+            height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            background: #fafafa;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        .user-msg {
+            background: #d1e7dd;
+            padding: 10px 15px;
+            border-radius: 12px;
+            margin: 8px 0;
+            text-align: right;
+        }
+        .bot-msg {
+            background: #e2e3e5;
+            padding: 10px 15px;
+            border-radius: 12px;
+            margin: 8px 0;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <h3 class="text-center mb-3 text-primary">🤖 Django AI Chatbot</h3>
+        <div class="chat-box">
+    {% for msg in chat_history %}
+        {% if msg.role == "user" %}
+            <div class="user-msg"><strong>You:</strong> {{ msg.content }}</div>
+        {% else %}
+            <div class="bot-msg"><strong>Bot:</strong> {{ msg.content|safe }}</div>
+        {% endif %}
+    {% endfor %}
+    {% if not chat_history %}
+        <p class="text-muted text-center mt-4">Start chatting with the AI!</p>
+    {% endif %}
+</div>
+
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" name="message" class="form-control" placeholder="Type your message..." required>
+                <button class="btn btn-primary" type="submit">Send</button>
+            </div>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="{% url 'clear_chat' %}" class="btn btn-outline-danger btn-sm">Clear Chat</a>
+        </div>
+    </div>
+</body>
+</html>
